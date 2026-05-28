@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card p-5 shadow-lg">
+
+    <!-- HEADER -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+
+            Resume Analysis Report
+
+        </h1>
+
+        <p class="text-muted">
+
+            AI-powered ATS analysis and recommendations
+
+        </p>
+
+    </div>
+
+    <!-- SCORE SECTION -->
+
+    <div class="score-section text-center mb-5">
+
+        <h3 class="mb-3">
+
+            ATS Resume Score
+
+        </h3>
+
+        <div class="progress mb-3">
+
+            <div
+                class="progress-bar"
+                style="width:{{ score }}%">
+
+                {{ score }}%
+
+            </div>
+
+        </div>
+
+        {% if score >= 80 %}
+
+        <span class="badge bg-success p-3">
+            Excellent Resume
+        </span>
+
+        {% elif score >= 60 %}
+
+        <span class="badge bg-primary p-3">
+            Good Resume
+        </span>
+
+        {% else %}
+
+        <span class="badge bg-danger p-3">
+            Needs Improvement
+        </span>
+
+        {% endif %}
+
+    </div>
+
+    <!-- ROLE -->
+
+    <div class="info-card mb-4">
+
+        <h4>Recommended Role</h4>
+
+        <p class="role-text">
+
+            {{ role }}
+
+        </p>
+
+    </div>
+
+    <!-- SKILLS -->
+
+    <div class="info-card mb-4">
+
+        <h4 class="mb-3">
+
+            Detected Skills
+
+        </h4>
+
+        {% for skill in skills %}
+
+        <span class="skill-badge">
+
+            {{ skill }}
+
+        </span>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- CHART -->
+
+    <div class="info-card mb-4">
+
+        <h4 class="mb-4">
+
+            Skill Distribution Chart
+
+        </h4>
+
+        {% if chart_file %}
+
+        <img
+            src="{{ url_for('static', filename=chart_file) }}"
+            class="img-fluid"
+            alt="Skill Chart">
+
+        {% else %}
+
+        <h5>Chart Not Generated</h5>
+
+        {% endif %}
+
+    </div>
+
+    <!-- MISSING SKILLS -->
+
+    <div class="info-card mb-4">
+
+        <h4 class="mb-3">
+
+            Missing Skills
+
+        </h4>
+
+        {% for skill in missing[:5] %}
+
+        <span class="missing-badge">
+
+            {{ skill }}
+
+        </span>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- SUGGESTIONS -->
+
+    <div class="info-card mb-5">
+
+        <h4 class="mb-3">
+
+            Suggestions
+
+        </h4>
+
+        <ul class="suggestion-list">
+
+            {% for item in suggestions %}
+
+            <li>{{ item }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <!-- BUTTONS -->
+
+    <div class="text-center">
+
+        <a href="/dashboard"
+           class="btn btn-primary me-3">
+
+            Back To Dashboard
+
+        </a>
+
+        <a href="/download-report/{{ filename }}"
+           class="btn btn-success">
+
+            Download PDF Report
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

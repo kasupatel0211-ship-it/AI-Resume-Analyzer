@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card p-4 shadow">
+
+    <h2>Admin Dashboard</h2>
+
+    <hr>
+
+    <div class="row text-center">
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card bg-primary text-white p-3">
+
+                <h4>Total Users</h4>
+
+                <h2>{{ total_users }}</h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card bg-success text-white p-3">
+
+                <h4>Total Resumes</h4>
+
+                <h2>{{ total_resumes }}</h2>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card bg-dark text-white p-3">
+
+                <h4>Average Score</h4>
+
+                <h2>{{ avg_score }}%</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h4>Top Skills</h4>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>Skill</th>
+            <th>Count</th>
+        </tr>
+
+        {% for skill, count in top_skills %}
+
+        <tr>
+
+            <td>{{ skill }}</td>
+
+            <td>{{ count }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endblock %}

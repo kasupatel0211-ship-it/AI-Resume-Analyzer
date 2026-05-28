@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="hero-section text-center">
+
+    <div class="hero-card p-5">
+
+        <h1 class="display-4 fw-bold mb-4">
+
+            AI Resume Analyzer
+
+        </h1>
+
+        <p class="lead mb-4">
+
+            Analyze resumes intelligently using AI-powered ATS scoring,
+            skill detection, job role recommendation, charts,
+            and professional resume insights.
+
+        </p>
+
+        <div class="mt-4">
+
+            <a href="/register"
+               class="btn btn-primary btn-lg me-3">
+
+                Get Started
+
+            </a>
+
+            <a href="/login"
+               class="btn btn-outline-light btn-lg">
+
+                Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FEATURES SECTION -->
+
+<div class="row mt-5 g-4">
+
+    <div class="col-md-4">
+
+        <div class="card feature-card p-4 h-100">
+
+            <h3>ATS Score</h3>
+
+            <p>
+
+                Get smart ATS-based resume scoring
+                with AI analysis.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card feature-card p-4 h-100">
+
+            <h3>Skill Detection</h3>
+
+            <p>
+
+                Detect technical skills automatically
+                from uploaded resumes.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card feature-card p-4 h-100">
+
+            <h3>PDF Reports</h3>
+
+            <p>
+
+                Download professional analysis reports
+                with recommendations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

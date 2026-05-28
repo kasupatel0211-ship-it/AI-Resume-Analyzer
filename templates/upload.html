@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card p-4 shadow">
+
+    <h2>Upload Resume</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input type="file" name="resume" accept=".pdf" class="form-control mb-3" required>
+
+        <button class="btn btn-primary">
+
+            Upload Resume
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

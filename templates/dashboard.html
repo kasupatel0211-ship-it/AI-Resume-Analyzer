@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- WELCOME SECTION -->
+
+<div class="dashboard-header mb-5">
+
+    <div class="card p-4">
+
+        <h2 class="fw-bold">
+
+            Welcome, {{ username }}
+
+        </h2>
+
+        <p class="text-muted">
+
+            Analyze resumes and track ATS performance.
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- STATS CARDS -->
+
+<div class="row g-4 mb-5">
+
+    <div class="col-md-4">
+
+        <div class="card stat-card p-4">
+
+            <h5>Total Resumes</h5>
+
+            <h2>{{ total_resumes }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card stat-card p-4">
+
+            <h5>Highest Score</h5>
+
+            <h2>{{ highest_score }}%</h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card stat-card p-4">
+
+            <h5>Average Score</h5>
+
+            <h2>{{ average_score }}%</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ACTION BUTTONS -->
+
+<div class="mb-4">
+
+    <a href="/upload"
+       class="btn btn-success me-3">
+
+        Upload Resume
+
+    </a>
+
+    <a href="/history"
+       class="btn btn-primary me-3">
+
+        View History
+
+    </a>
+
+    <a href="/logout"
+       class="btn btn-danger">
+
+        Logout
+
+    </a>
+
+</div>
+
+<!-- GRAPH SECTION -->
+
+<div class="card p-4 mb-5">
+
+    <h3 class="mb-4">
+
+        Score Trend Graph
+
+    </h3>
+
+    {% if graph_file %}
+
+    <img
+        src="{{ url_for('static', filename=graph_file) }}"
+        class="img-fluid"
+        alt="Score Trend Graph">
+
+    {% else %}
+
+    <h5>No Graph Data Available</h5>
+
+    {% endif %}
+
+</div>
+
+<!-- RESUME TABLE -->
+
+<div class="card p-4">
+
+    <h3 class="mb-4">
+
+        Uploaded Resumes
+
+    </h3>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Resume Name</th>
+                    <th>Score</th>
+                    <th>Role</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for resume in resumes %}
+
+                <tr>
+
+                    <td>{{ resume[0] }}</td>
+
+                    <td>{{ resume[2] }}</td>
+
+                    <td>
+
+                        <span class="badge bg-success p-2">
+
+                            {{ resume[3] }}%
+
+                        </span>
+
+                    </td>
+
+                    <td>{{ resume[4] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

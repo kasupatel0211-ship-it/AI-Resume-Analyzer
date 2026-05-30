@@ -25,8 +25,44 @@ from reportlab.pdfgen import canvas
 app = Flask(__name__)
 app.secret_key = "resume_analyzer_secret"
 
+
+os.makedirs("uploads", exist_ok=True)
+os.makedirs("reports", exist_ok=True)
+os.makedirs("static/charts", exist_ok=True)
+os.makedirs("database", exist_ok=True)
+
+
 UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+def init_db():
+
+    conn = sqlite3.connect('database/resume.db')
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT UNIQUE,
+        password TEXT
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS resumes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        file_name TEXT,
+        score INTEGER,
+        role TEXT
+    )
+    """)
+
+    conn.commit()
+    conn.close()
+
+init_db()
 
 
 # ======================
